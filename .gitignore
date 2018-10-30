@@ -101,3 +101,6 @@ ENV/
 burndown/settings.py
 *.orig
 .DS_Store
+
+#Temp folder
+.temp
