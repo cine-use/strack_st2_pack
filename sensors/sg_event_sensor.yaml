@@ -1,0 +1,11 @@
+---
+class_name: "ShotgunEventSensor"
+entry_point: "sg_event_sensor.py"
+description: "Listening Shogun."
+poll_interval: "0.5"
+trigger_types:
+    -
+        name: "shotgun_event_change"
+        description: "Trigger when represents new logs from shotgun"
+        payload_info:
+            - "json_str"

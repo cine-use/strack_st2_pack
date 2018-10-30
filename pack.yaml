@@ -1,0 +1,11 @@
+---
+ref: strack
+name: strack st2 package
+description: Strack Intergration Pack
+keywords:
+    - strack
+    - cg
+    - pipeline
+version: 0.1.0
+author: Cineuse, Inc.
+email: it@cineuse.com

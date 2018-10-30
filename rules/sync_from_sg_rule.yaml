@@ -1,0 +1,10 @@
+---
+name: on_shotgun_event
+pack: strack
+description: Sample rule firing on strack.shotgun_event_change
+enabled: true
+trigger:
+    type: strack.shotgun_event_change
+action:
+    ref: strack.sync_sg_to_strack
+    parameters:

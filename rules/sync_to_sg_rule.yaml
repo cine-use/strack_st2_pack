@@ -1,0 +1,10 @@
+---
+name: on_strack_event
+pack: strack
+description: Sample rule firing on strack.strack_event_change
+enabled: true
+trigger:
+    type: strack.strack_event_change
+action:
+    ref: strack.sync_strack_to_sg
+    parameters:
