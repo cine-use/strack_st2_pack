@@ -1,10 +1,15 @@
 ---
-name: on_shotgun_event
-pack: strack
-description: Sample rule firing on strack.shotgun_event_change
-enabled: true
-trigger:
+  name: on_shotgun_event
+  pack: strack
+  description: Sample rule firing on strack.shotgun_event_change
+  enabled: true
+  trigger:
     type: strack.shotgun_event_change
-action:
+  criteria:
+    trigger.json_str:
+      type: "regex"
+      pattern: "^{.*}$"
+  action:
     ref: strack.sync_sg_to_strack
     parameters:
+      json_str: "{{trigger.json_str}}"
