@@ -26,6 +26,8 @@ class WriteDataAction(Action):
         try:
             # parse shotgun event info
             event_info = json.loads(json_str)
+            if not event_info.get("project"):
+                return True, "Event not in any project, nothing to do."
             event_meta_data = event_info.get("meta")
             # if not really changed, ignore
             if event_meta_data.get("actual_attribute_changed"):
