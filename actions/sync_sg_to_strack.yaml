@@ -1,0 +1,12 @@
+---
+name: "sync_sg_to_strack"
+runner_type: "python-script"
+description: "Sync shotgun oprations to Strack"
+enabled: true
+entry_point: "sync_sg_to_strack.py"
+
+parameters:
+    json_str:
+        type: "string"
+        description: "shotgun event log data"
+        required: true
