@@ -63,7 +63,7 @@ class ShotgunEventSensor(PollingSensor):
         self._logger.debug("polled: %s" % results)
         for result in results:
             try:
-                self._dispatch_trigger(result)
+                self._dispatch_trigger(json.dumps(result))
             except Exception as e:
                 self._logger.exception('Polling Shotgun Event failed: %s' % (str(e)))
         if len(results) > 0:
