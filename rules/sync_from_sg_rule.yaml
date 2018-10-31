@@ -8,7 +8,7 @@
   criteria:
     trigger.json_str:
       type: "regex"
-      pattern: "^{.*}$"
+      pattern: ".*"
   action:
     ref: strack.sync_sg_to_strack
     parameters:
