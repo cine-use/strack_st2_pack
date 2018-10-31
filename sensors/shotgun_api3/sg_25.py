@@ -1,12 +1,11 @@
-import os
 import sys
+import os
 import logging
 
-from shotgun_api3.lib.httplib2 import Http, ProxyInfo, socks, SSLHandshakeError
-from shotgun_api3.lib.sgtimezone import SgTimezone
-from shotgun_api3.lib.xmlrpclib import Error, ProtocolError, ResponseError
+from .lib.httplib2 import Http, ProxyInfo, socks, SSLHandshakeError
+from .lib.sgtimezone import SgTimezone
+from .lib.xmlrpclib import Error, ProtocolError, ResponseError
 import mimetypes    # used for attachment upload
-
 
 LOG = logging.getLogger("shotgun_api3")
 LOG.setLevel(logging.WARN)
@@ -23,5 +22,5 @@ except ImportError:
         dir_path = os.path.dirname(__file__)
         lib_path = os.path.join(dir_path, 'lib')
         sys.path.append(lib_path)
-        import shotgun_api3.lib.simplejson as json
+        from .lib import simplejson as json
         sys.path.pop()
