@@ -3,8 +3,8 @@
 
 import json
 from st2actions.runners.pythonrunner import Action
-from get_dam_session import get_dam_session
-from strack_shotgun_fields_map import get_st_field
+from common_lib.get_dam_session import get_dam_session
+from common_lib.strack_shotgun_fields_map import get_st_field
 
 
 class WriteDataAction(Action):

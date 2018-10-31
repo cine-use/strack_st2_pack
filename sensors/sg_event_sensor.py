@@ -4,7 +4,7 @@
 import json
 import datetime
 from st2reactor.sensor.base import PollingSensor
-from get_dam_session import get_dam_session
+from common_lib.get_dam_session import get_dam_session
 
 __all__ = [
     'ShotgunEventSensor'
