@@ -55,14 +55,14 @@ class WriteDataAction(Action):
 
             # edit fields
             elif event_meta_data.get("type") == "attribute_change":
-                module_name = event_meta_data.get("entity_type")
+                module_name = event_meta_data.get("entity_type").lower()
                 st_entity_id = st.find_one(module_name, ["source_id", "==", event_meta_data.get("entity_id")])
                 new_data = {event_meta_data.get("attribute_name"): event_meta_data.get('new_value')}
                 st.update(module_name, st_entity_id, new_data)
                 return True, "successful update %s/%s to %s" % (module_name, st_entity_id, new_data)
             # remove something
             elif event_meta_data.get("type") == "entity_retirement":
-                module_name = event_meta_data.get("entity_type")
+                module_name = event_meta_data.get("entity_type").lower()
                 st_entity_id = st.find_one(module_name, ["source_id", "==", event_meta_data.get("entity_id")])
                 st.delete(module_name, st_entity_id)
                 return True, "successful delete %s/%s" % (module_name, st_entity_id)
