@@ -179,7 +179,7 @@ class Strack(object):
         command = self.set_up_command(module_name, 'creation_require_fields')
         return command()
 
-    def find(self, module_name, filter=None, fields=None, order=None, page=None):
+    def find_one(self, module_name, filter=None, fields=None, order=None, page=None):
         """
 
         Args:
@@ -195,7 +195,7 @@ class Strack(object):
         command = self.set_up_command(module_name, 'find')
         return command(filter, fields, order, page)
 
-    def select(self, module_name, filter=None, fields=None, order=None, page=None):
+    def find(self, module_name, filter=None, fields=None, order=None, page=None):
         """
 
         Args:
