@@ -4,8 +4,8 @@ entry_point: "sg_event_sensor.py"
 description: "Listening Shogun."
 poll_interval: 1
 trigger_types:
-    -
-        name: "shotgun_event_change"
-        description: "Trigger when represents new logs from shotgun"
-        payload_info:
-            - "json_str"
+  -
+    name: "shotgun_event_change"
+    description: "Trigger when represents new logs from shotgun"
+    payload_info:
+        - "json_str"

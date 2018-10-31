@@ -82,8 +82,8 @@ class ShotgunEventSensor(PollingSensor):
     """ get nextEventId for shotgun find filers """
 
     def _get_event_id(self):
-        self._last_id = int(self._sensor_service.get_value('last_id'))
-        return unicode(self._last_id)
+        self._last_id = int(self._sensor_service.get_value('last_id') or INIT_EVENT_ID)
+        return str(self._last_id)
 
     def _set_event_id(self, last_id):
         self._last_id = last_id
