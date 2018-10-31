@@ -16,8 +16,8 @@ class Strack(object):
     """
 
     COMMAND_FACTORY = {
-        'find': FindCommand,
-        'select': SelectCommand,
+        'find_one': FindCommand,
+        'find': SelectCommand,
         'create': CreateCommand,
         'update': UpdateCommand,
         'summary': SummaryCommand,
@@ -30,8 +30,8 @@ class Strack(object):
 
     EVENT_COMMAND_FACTORY = {
         'create': CreateEventCommand,
-        'find': FindEventCommand,
-        'select': SelectEventCommand,
+        'find_one': FindEventCommand,
+        'find': SelectEventCommand,
         'fields': EventFieldsCommand,
         'send_email': SendEmailCommand
     }
