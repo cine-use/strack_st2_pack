@@ -30,9 +30,9 @@ class ShotgunEventSensor(PollingSensor):
             sensor_service=sensor_service,
             config=config,
             # poll_interval = poll_interval
-            poll_interval=0.5
+            poll_interval=1
         )
-        self.poll_interval = 0.5
+        self.poll_interval = 1
         self._logger = self.sensor_service.get_logger(name=self.__class__.__name__)
 
         self._datastore = self._get_datastore_dict()
