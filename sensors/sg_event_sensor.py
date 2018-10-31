@@ -63,7 +63,7 @@ class ShotgunEventSensor(PollingSensor):
         self._logger.debug("polled: %s" % results)
         for result in results:
             try:
-                self._dispatch_trigger(json.dumps(result))
+                self._dispatch_trigger(result)
             except Exception as e:
                 self._logger.exception('Polling Shotgun Event failed: %s' % (str(e)))
         if len(results) > 0:
@@ -79,9 +79,8 @@ class ShotgunEventSensor(PollingSensor):
         self._logger.info("dispatch trigger %s with payload %s" % (trigger, payload))
         self._sensor_service.dispatch(trigger=trigger, payload=payload)
 
-    """ get nextEventId for shotgun find filers """
-
     def _get_event_id(self):
+        """ get nextEventId for shotgun find filers """
         self._last_id = int(self._sensor_service.get_value('last_id') or INIT_EVENT_ID)
         return str(self._last_id)
 
