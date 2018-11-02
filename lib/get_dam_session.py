@@ -4,7 +4,7 @@ SHOTGUN_URL = 'https://david1.shotgunstudio.com'
 SHOTGUN_SCRIPT = 'event_daemon'
 SHOTGUN_API_KEY = 'Plhmjs0whhylyl@mnrtyivffy'
 
-STACK_SERVER_URL = "http://192.168.31.12/strack"
+STACK_SERVER_URL = "http://192.168.31.205/strack"
 STACK_USER = "strack_admin"
 STACK_PASSWD = "chengwei5566"
 

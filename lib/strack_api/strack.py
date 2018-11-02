@@ -49,7 +49,7 @@ class Strack(object):
         'get_media_data': GetMediaDataCommand,
         'get_best_media_server': GetBestMediaServerCommand,
         'get_media_server': GetMediaServerCommand,
-        'get_media_server_status': GetMediaServerStatusCommand,
+        'get_media_servers': GetMediaServerStatusCommand,
         'clear_media_thumbnail': ClearMediaThumbnailCommand,
         'get_media_full_path': GetMediaFullPathCommand,
         'select_media_data': SelectMediaDataCommand,
@@ -192,7 +192,7 @@ class Strack(object):
         Returns: [dict] Dict about found item in module
 
         """
-        command = self.set_up_command(module_name, 'find')
+        command = self.set_up_command(module_name, 'find_one')
         return command(filter, fields, order, page)
 
     def find(self, module_name, filter=None, fields=None, order=None, page=None):
@@ -209,7 +209,7 @@ class Strack(object):
 
         """
         # init command object
-        command = self.set_up_command(module_name, 'select')
+        command = self.set_up_command(module_name, 'find')
         # execute
         return command(filter, fields, order, page)
 
@@ -246,7 +246,6 @@ class Strack(object):
         return command(id)
 
     def upload(self, file_path, server=None):
-        # fixme: get the best server when server is None
         command = self.set_up_command('media', 'upload')
         return command(file_path, server)
 
@@ -388,7 +387,7 @@ class Strack(object):
         command = self.set_up_command('media', 'get_media_server')
         return command(server_id)
 
-    def get_media_server_status(self):
+    def get_media_servers(self):
         """
 
         Description: 获取所有的媒体服务器状态
@@ -396,7 +395,7 @@ class Strack(object):
         Returns:
 
         """
-        command = self.set_up_command('media', 'get_media_server_status')
+        command = self.set_up_command('media', 'get_media_servers')
         return command()
 
     def clear_media_thumbnail(self, filter):
@@ -423,13 +422,19 @@ class Strack(object):
 if __name__ == "__main__":
     # st = Strack(base_url="http://192.168.31.168/strack/api/",
     #             login_name="strack_admin", password="chengwei5566")
-    st = Strack(base_url="http://192.168.31.234/strack/",
+    st = Strack(base_url="http://192.168.31.205/strack/",
                 login_name="strack_admin", password="chengwei5566")
     from pprint import pprint
+    # print st.create('project', {'name': "aamma", "code": "aadcjna", "status_id": 1})
+    # print st.relation_fields('project').keys()
+    # print st.select('file', fields=st.relation_fields('file'), order={'version': 'desc'})
+    # pprint(st.select('file_type', fields=st.relation_fields('file_type')))
     # pprint(st.get_member_data(1, 4))
+    # pprint(st.find('project_template', filter=[['project_id', '=', 7]]))
+    # pprint(st.find('file', filter=[['project_id', '=', 2]]))
+    pprint(st.find('event'))
     # print st.send_email(["298081132@qq.com"], u"Strack测试", "text", u"测试内容")
-    pprint(st.find('task', fields=st.relation_fields('task')))
-    # pprint(st.create('dir_template', {'link_module_id': 4, 'link_id': 10001, 'rule': 'test_link_module', 'pattern': '{1}'}))
+    # pprint(st.find('file_commit', fields=st.relation_fields('file_commit')))
     # pprint(len(st.select('file', filter=[['id', '>', 1000]], fields=st.relation_fields('file'),
     #                      page={'page_size': 20000, 'page_num': 1})))
     # pprint(st.find('project', fields=st.relation_fields('project')))

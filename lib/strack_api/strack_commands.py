@@ -201,6 +201,17 @@ class QueryCommand(Command):
             else:
                 new_fields_param.setdefault(module, list()).append(field)
         result.update({'fields': new_fields_param})
+        # 格式化order
+        order_param = result.get('order')
+        new_order_param = {}
+        for order_key, order_value in order_param.items():
+            module = self.module.get('code')
+            if '.' not in order_key:
+                new_order_key = '%s.%s' % (module, order_key)
+            else:
+                new_order_key = order_key
+            new_order_param.setdefault(new_order_key, order_value)
+        result.update({'order': new_order_param})
         return result
 
 
@@ -815,6 +826,11 @@ class CreateEventCommand(EventCommand):
                  'defaultValue': None}
                 ]
 
+    @property
+    def headers(self):
+        return {'Content-Type': 'application/json'}
+
+
     def _format_params(self, param_dict):
         param_dict.update({'type': 'custom'})
         return param_dict
@@ -823,7 +839,7 @@ class CreateEventCommand(EventCommand):
         event_server = self.server.get_event_server()
         add_request_url = event_server.get('add_url')
         data = payload.get('data')
-        result = requests.post(add_request_url, data=data)
+        result = requests.post(add_request_url, headers=self.headers, data=data)
         return result
 
 
@@ -852,10 +868,14 @@ class FindEventCommand(EventCommand):
                                   "page_size": 0}}
                 ]
 
+    @property
+    def headers(self):
+        return {'Content-Type': 'application/json'}
+
     def _execute(self, payload):
         event_server = self.server.get_event_server()
         find_request_url = event_server.get('find_url')
-        result = requests.post(find_request_url, data=json.dumps(payload))
+        result = requests.post(find_request_url, headers=self.headers, data=json.dumps(payload))
         return result
 
     def _format_result(self, result):
@@ -888,10 +908,14 @@ class SelectEventCommand(EventCommand):
                                   "page_size": 0}}
                 ]
 
+    @property
+    def headers(self):
+        return {'Content-Type': 'application/json'}
+
     def _execute(self, payload):
         event_server = self.server.get_event_server()
         select_request_url = event_server.get('select_url')
-        result = requests.post(select_request_url, data=json.dumps(payload))
+        result = requests.post(select_request_url, headers=self.headers, data=json.dumps(payload))
         return result
 
 
@@ -899,10 +923,14 @@ class EventFieldsCommand(EventCommand):
 
     cmd = 'fields'
 
+    @property
+    def headers(self):
+        return {'Content-Type': 'application/json'}
+
     def _execute(self, payload):
         event_server = self.server.get_event_server()
         fields_request_url = event_server.get('fields_url')
-        result = requests.post(fields_request_url, data=json.dumps(payload))
+        result = requests.post(fields_request_url, headers=self.headers, data=json.dumps(payload))
         return result
 
     def _format_result(self, result):
@@ -932,6 +960,10 @@ class SendEmailCommand(EventCommand):
                  'required': True,
                  'defaultValue': None}
                 ]
+
+    @property
+    def headers(self):
+        return {'Content-Type': 'application/json'}
 
     def _format_params(self, param_dict):
         addressee_list = param_dict.get('addressee_list')
