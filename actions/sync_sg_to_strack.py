@@ -46,7 +46,7 @@ class WriteDataAction(Action):
             # do create
             elif self.action_service.get_value(name="in_creating") == "true":  # just created
                 new_creation = json.loads(self.action_service.get_value("new_creation"))
-                module_name = new_creation.get("module")
+                module_name = new_creation.get("module").lower()
                 init_data = new_creation.get("fields")
                 st.create(module_name, init_data)       # FIXME: if entity in init data, it'll be wrong
                 self.logger.debug("create done")
